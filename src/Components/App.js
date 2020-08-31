@@ -2,12 +2,14 @@ import React from "react";
 import GlobalStyles from "../Styles/GlobalStyles";
 import styled, { ThemeProvider } from "styled-components";
 import Theme from "../Styles/Theme";
-import AppRouter from "./Router";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 import Footer from "./Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "./Header";
+import {BrowserRouter as Router} from "react-router-dom";
+import AppRoutes from "./Routes";
 // import createBrowserHistory from 'history/createBrowserHistory';
 // const history = createBrowserHistory();
 
@@ -22,12 +24,17 @@ function App() {
 
   return (
     <ThemeProvider theme={Theme}>
-    <>
-      <GlobalStyles />
-      <Wrapper>
-        <AppRouter isLoggedIn={data.isLoggedIn} />
-        <Footer />
+      <>
+        <GlobalStyles />
+        <Router>
+        <>
+        <Header />
+        <Wrapper>
+          <AppRoutes isLoggedIn={data.isLoggedIn} />
+          <Footer />
         </Wrapper>
+        </>
+        </Router>
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
       </>
     </ThemeProvider>
