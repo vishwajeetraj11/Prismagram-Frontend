@@ -52,7 +52,7 @@ const Footer = styled.footer`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1.2rem;
-
+  margin: 40px 0 20px 0;
 `;
 const List = styled.ul`
   display: flex;

@@ -12,9 +12,10 @@ background-color: ${props => props.theme.blueColor};
 text-align: center;
 padding: 7px 0;
 font-size: 1.4rem;
+cursor: pointer;
 `;
 
-const Button = ({ text }) => <Container>{text}</Container>
+const Button = ({ text, onClick }) => <Container onClick={onClick} >{text}</Container>
 
 Button.prototype ={
     text: PropTypes.string.isRequired

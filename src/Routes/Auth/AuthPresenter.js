@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Helmet from "react-helmet"
+// import {Helmet} from "rl-react-helmet";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 
@@ -17,26 +19,35 @@ export default ({
     <Wrapper>
       <Form>
         {action === "LOGIN" && (
+          <>
+           <Helmet><title>Login | Prismagram</title></Helmet>
           <form onSubmit={onSubmit}>
-            <Input placeholder={"Email"} {...email} type="email" />
+            <Input placeholder={"Email"} value={email.value} onChange={email.onChange} type="email" />
             <Button text={"Login"} />
           </form>
+          </>
         )}
         {action === "SIGNUP" && (
+          <>
+           <Helmet><title>Signup | Prismagram</title></Helmet>
           <form onSubmit={onSubmit}>
-            <Input placeholder={"First Name"} {...firstname} />
-            <Input placeholder={"Last Name"} {...lastname} />
-            <Input placeholder={"Email"} {...email} type="email" />
-            <Input placeholder={"Username"} {...username} />
+            <Input placeholder={"First Name"} value={firstname.value} onChange={firstname.onChange} />
+            <Input placeholder={"Last Name"} value={lastname.value} onChange={lastname.onChange} />
+            <Input placeholder={"Email"} value={email.value} onChange={email.onChange} type="email" />
+            <Input placeholder={"Username"} value={username.value} onChange={username.onChange} />
             <Button text={"Sign up"} />
           </form>
+          </>
         )}
         {
           action === "CONFIRM_SECRET" && (
+            <>
+          <Helmet><title>Confirm Secret | Prismagram</title></Helmet>
             <form onSubmit={onSubmit}>
-            <Input placeholder="Paste your secret" required {...secret}></Input>
+            <Input placeholder="Paste your secret" required value={secret.value} onChange={secret.onChange}></Input>
             <Button text={"Confirm"} />
             </form>
+            </>
           )
         }
       </Form>

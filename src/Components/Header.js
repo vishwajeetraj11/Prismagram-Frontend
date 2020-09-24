@@ -4,20 +4,14 @@ import { Link, withRouter } from "react-router-dom";
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
 import { Logo, Compass, HeartEmpty, User } from "./Icons";
-import {gql} from "apollo-boost"
+import {seeMyProfile} from "../SharedQueries";
 import {useQuery} from "react-apollo-hooks"
 
-const seeMyProfile = gql`
-    {
-        seeMyProfile {
-                username
-        }
-    }
-`
 
 export default withRouter((props) => {
   const search = useInput("");
   const {data} = useQuery(seeMyProfile);
+  
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +27,7 @@ export default withRouter((props) => {
         </HeaderColumn>
         <HeaderColumn>
         <form onSubmit={onSearchSubmit}>
-        <SearchInput {...search} placeholder={"Search"} />
+        <SearchInput value={search.value} onChange={search.onChange} placeholder={"Search"} />
         </form>
         </HeaderColumn>
         <HeaderColumn>
@@ -43,7 +37,7 @@ export default withRouter((props) => {
           <HeaderLink to="/notifications">
             <HeartEmpty />
           </HeaderLink>
-          <HeaderLink to={data ? data.seeMyProfile.username : "/#"}>
+          <HeaderLink to={data && data.seeMyProfile && data.seeMyProfile.username ? data.seeMyProfile.username : "/"}>
           <User />
         </HeaderLink>
         </HeaderColumn>
@@ -65,6 +59,7 @@ const Header = styled.header`
   align-items: center;
   padding: 2.5rem 0;
   background-color: #fff;
+  z-index: 10;
 `;
 
 const HeaderColumn = styled.div`

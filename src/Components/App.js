@@ -28,7 +28,7 @@ function App() {
         <GlobalStyles />
         <Router>
         <>
-        <Header />
+        {data && data.isLoggedIn && <Header />}
         <Wrapper>
           <AppRoutes isLoggedIn={data.isLoggedIn} />
           <Footer />

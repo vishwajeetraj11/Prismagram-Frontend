@@ -98,6 +98,7 @@ export default () => {
             localLoginMutation({
               variables: {token}
             })
+            window.location.refresh(true);
           } else{
             throw Error();
           }
